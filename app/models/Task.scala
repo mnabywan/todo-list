@@ -1,27 +1,31 @@
 package models
 
-import play.api.db.DBApi
-import play.db.DBApi
-import play.db.Database
-import play.db._
-import anorm.SqlParser._
+import java.sql.Connection
+
+import play.api.db._
+import play.api.Application
 import anorm._
+import anorm._
+import anorm.SqlParser._
+import anorm.SQL
+import javax.inject.Inject
 import play.api.db.Database
+import play.api.mvc.ControllerComponents
 
-
-case class Task(
-  id: Long,
-  label: String
-)
-
+case class Task (
+                  id: Long,
+                  label: String
+                )
 
 
 object Task {
 
-  def all(): List[Task] = Nil
 
-  def create(label: String){}
-
-  def delete(id: Long) {}
+  val task = {
+    get[Long]("id") ~
+      get[String]("label") map {
+      case id~label => Task(id, label)
+    }
+  }
 
 }
