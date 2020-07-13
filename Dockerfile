@@ -2,7 +2,7 @@ FROM openjdk:11
 ENV JAVA_HOME /usr/lib/jvm/java-1.11.0-openjdk-amd64
 ENV PATH $PATH:/usr/lib/jvm/java-1.11.0-openjdk-amd64/jre/bin:/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin
 
-ENV SBT_VERSION 1.2.1
+ENV SBT_VERSION 1.3.13
 
 # Install curl
 RUN \
@@ -18,8 +18,8 @@ RUN \
   apt-get update && \
   apt-get -y install sbt
 
-WORKDIR /src/main/java
-COPY . /src/main/java
+WORKDIR /app
+COPY . /app
 RUN sbt update
 EXPOSE 9000
 ENTRYPOINT ["sbt", "run"]
