@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgres:
+    container_name: postgres-database
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=todolist
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - 5432:5432
+
+  web:
+    build: .
+    ports:
+      - 9000:9000
+    links:
+      - postgres

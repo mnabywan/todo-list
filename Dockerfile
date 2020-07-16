@@ -23,3 +23,4 @@ COPY . /app
 RUN sbt update
 EXPOSE 9000
 ENTRYPOINT ["sbt", "run"]
+
